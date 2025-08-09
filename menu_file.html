@@ -4,12 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Portfolio</title>
+<meta name="color-scheme" content="dark"> <!-- 다크 배경 힌트 -->
 <style>
-  body{margin:0;font-family:system-ui,Arial,sans-serif;background:#fff;color:#111}
-  .wrap{max-width:960px;margin:48px auto;padding:0 20px}
-  img{max-width:100%;height:auto;border-radius:12px}
-  h1{font-size:28px;margin:0 0 12px}
-  p{margin:0 0 24px}
+  /* 기반 스타일 */
+  :root { --fg: #fff; --muted: #bbb; --bg: #000; }
+  html, body { height: 100%; }
+  body{
+    margin:0;
+    font-family: system-ui, Arial, sans-serif;
+    background: var(--bg) !important; /* 검정 배경 강제 */
+    color: var(--fg);                  /* 기본 글자색을 흰색으로 */
+  }
+  .wrap{ max-width:960px; margin:48px auto; padding:0 20px; }
+  h1{ font-size:28px; margin:0 0 12px; }
+  p{ margin:0 0 24px; color: var(--muted); } /* 날짜는 약간 옅게 */
+  img{ display:block; max-width:100%; height:auto; border-radius:12px; }
 </style>
 </head>
 <body>
