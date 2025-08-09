@@ -5,65 +5,93 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Portfolio</title>
 <style>
-  body{
+  :root{--bg:#000;--fg:#fff;--muted:#bbb}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,Arial,sans-serif}
+  .wrap{max-width:960px;margin:48px auto;padding:0 20px}
+
+  /* 제목+날짜+화살표를 한 줄로 */
+.header-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
+
+  position: sticky;
+  top: 0;                  /* 화면 최상단부터 고정 */
+  background: #000;        /* 배경색 안 주면 아래 내용이 비쳐서 글씨 겹칠 수 있음 */
+  padding: 10px 0;
+  z-index: 1000;           /* 이미지 위에 표시되도록 */
+}
+  .title-block h1{
     margin:0;
-    font-family:system-ui,Arial,sans-serif;
-    background:#000 !important;
+    font-size:28px;
+  }
+  .title-block p{
+    margin:0;
+    color:var(--muted);
+  }
+
+  /* 화살표 버튼 */
+  .arrow-btn{
+    display:flex;
+    gap:20px;
+  }
+  .arrow-btn button{
+    border:0;
+    background:rgba(255,255,255,0.1);
     color:#fff;
+    font-size:20px;
+    padding:8px 20px;
+    border-radius:6px;
+    cursor:pointer;
   }
-  .wrap{
-    max-width:960px;
-    margin:48px auto;
-    padding:0 20px;
-    position:relative;
+  .arrow-btn button:hover{
+    background:rgba(255,255,255,0.25);
   }
+
+  /* 이미지 스타일 */
   img{
     max-width:100%;
     height:auto;
     border-radius:12px;
     display:block;
   }
-  /* 화살표 버튼 스타일 */
-  .arrow{
-    position:absolute;
-    top:50%;
-    right:-50px; /* 이미지 오른쪽 밖으로 */
-    transform:translateY(-50%);
-    font-size:40px;
-    color:#fff;
-    cursor:pointer;
-    user-select:none;
-  }
-  .arrow:hover{
-    color:#ff0;
-  }
 </style>
 </head>
 <body>
   <div class="wrap">
-    <h1>Portfolio</h1>
-    <p>2025.08.09 Upload</p>
+    <!-- 제목+날짜+화살표 -->
+    <div class="header-row">
+      <div class="title-block">
+        <h1>Portfolio</h1>
+        <p>2025.08.09 Upload</p>
+      </div>
+      <div class="arrow-btn">
+        <button aria-label="이전" onclick="prevImage()">&#9664;</button>
+        <button aria-label="다음" onclick="nextImage()">&#9654;</button>
+      </div>
+    </div>
+
+    <!-- 이미지 -->
     <img id="portfolioImg"
          src="https://github.com/dltkdgur060-oss/portfolio_images/raw/main/portfoliox4.png"
-         alt="포트폴리오 이미지">
-
-    <!-- 오른쪽 화살표 -->
-    <div class="arrow" onclick="nextImage()">&#9654;</div>
+         alt="포트폴리오 대표 이미지">
   </div>
 
 <script>
-  // 이미지 목록
   const images = [
     "https://github.com/dltkdgur060-oss/portfolio_images/raw/main/portfoliox4.png",
     "https://github.com/dltkdgur060-oss/portfolio_images/raw/main/week_menu.png"
-    // 필요하면 여기에 더 추가
   ];
   let currentIndex = 0;
+  const imgEl = document.getElementById("portfolioImg");
 
-  function nextImage(){
-    currentIndex = (currentIndex + 1) % images.length;
-    document.getElementById("portfolioImg").src = images[currentIndex];
+  function show(i){
+    currentIndex = (i + images.length) % images.length;
+    imgEl.src = images[currentIndex];
   }
+  function nextImage(){ show(currentIndex + 1); }
+  function prevImage(){ show(currentIndex - 1); }
 </script>
 </body>
 </html>
