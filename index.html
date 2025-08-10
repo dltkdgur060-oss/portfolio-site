@@ -6,22 +6,61 @@
 <title>Portfolio</title>
 <style>
   :root{--bg:#000;--fg:#fff;--muted:#bbb}
-  body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,Arial,sans-serif}
+  html {
+    overflow-y: scroll;       /* 항상 세로 스크롤바 공간 확보 */
+    scrollbar-gutter: stable; /* 최신 브라우저에서 스크롤바 폭 고정 */
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:system-ui,Arial,sans-serif
+  }
   .wrap{max-width:960px;margin:48px auto;padding:0 20px}
 
   .header-row{
-    display:flex;align-items:center;justify-content:space-between;
-    margin-bottom:12px;position:sticky;top:0;background:#000;padding:10px 0;z-index:1000;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:12px;
+    position: sticky;
+    top: 0;
+    background: #000;
+    padding: 10px 0;
+    z-index: 1000;
   }
-  .title-block h1{margin:0;font-size:28px}
-  .title-block p{margin:0;color:var(--muted)}
-  .arrow-btn{display:flex;gap:20px}
+  .title-block h1{
+    margin:0;
+    font-size:28px;
+  }
+  .title-block p{
+    margin:0;
+    color:var(--muted);
+  }
+  .arrow-btn{
+    display:flex;
+    gap:20px;
+  }
   .arrow-btn button{
-    border:0;background:rgba(255,255,255,0.1);color:#fff;font-size:20px;
-    padding:8px 20px;border-radius:6px;cursor:pointer;
+    border:0;
+    background:rgba(255,255,255,0.1);
+    color:#fff;
+    font-size:20px;
+    padding:8px 20px;
+    border-radius:6px;
+    cursor:pointer;
   }
-  .arrow-btn button:hover{background:rgba(255,255,255,0.25)}
-  img{max-width:100%;height:auto;border-radius:12px;display:block}
+  .arrow-btn button:hover{
+    background:rgba(255,255,255,0.25);
+  }
+
+  /* 이미지 스타일 - 항상 컨테이너 폭 100% 맞춤 */
+  img{
+    max-width:100%;
+    height:auto;
+    border-radius:12px;
+    display:block;
+  }
 </style>
 </head>
 <body>
@@ -43,27 +82,14 @@
   </div>
 
 <script>
-  // 1) 이미지 목록 (필요하면 파일명/경로 확인)
   const images = [
     "https://raw.githubusercontent.com/dltkdgur060-oss/portfolio_images/main/portfoliox4.png",
     "https://raw.githubusercontent.com/dltkdgur060-oss/portfolio_images/main/week_menu.png",
     "https://raw.githubusercontent.com/dltkdgur060-oss/portfolio_images/main/banner.png",
     "https://raw.githubusercontent.com/dltkdgur060-oss/portfolio_images/main/reflat.png"
   ];
-
   let currentIndex = 0;
   const imgEl = document.getElementById("portfolioImg");
-
-  // 2) 프리로드 & 로깅
-  images.forEach((src) => {
-    const i = new Image();
-    i.onload = () => console.log("preloaded:", src);
-    i.onerror = () => console.warn("로드 실패:", src);
-    i.src = src;
-  });
-
-  imgEl.addEventListener("load", () => console.log("표시됨:", images[currentIndex]));
-  imgEl.addEventListener("error", () => console.error("표시 실패:", images[currentIndex]));
 
   function show(i){
     currentIndex = (i + images.length) % images.length;
