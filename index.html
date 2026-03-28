@@ -21,12 +21,11 @@
   }
   .wrap{
     max-width:960px;
-    margin: 0 auto;
+    margin:0 auto;
     padding:0 20px;
-    padding-top: 40px;
+    padding-top: 120px;
   }
 
-  /* 상단바 전체 화면 full-width 검은색 */
   .header-row{
     position: fixed;
     top: 0;
@@ -39,11 +38,11 @@
     border-bottom: 1px solid rgba(212,175,119,0.15);
   }
 
-  /* 내부 콘텐츠 중앙 정렬 + 오른쪽 패딩 늘림 */
   .header-content{
     max-width: 960px;
     margin: 0 auto;
-    padding: 0 24px 0 24px;    /* 스크롤바 공간 확보 */
+    padding: 0 32px 0 32px;
+    padding-right: 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -63,7 +62,6 @@
     font-size:15px;
   }
 
-  /* 화살표 버튼 - 당신의 이미지 그대로 유지 */
   .arrow-btn{
     display: flex;
     flex-direction: row;
@@ -96,7 +94,6 @@
     filter: brightness(0) invert(1);
   }
 
-  /* 플로팅 Zoom 버튼 */
   .floating-zoom{
     position: fixed;
     bottom: 30px;
@@ -141,14 +138,13 @@
     transform: scale(1.08);
   }
 
-  /* 이미지 컨테이너 */
   .image-container{
     position:relative;
     width:100%;
     text-align:center;
     overflow: hidden;
     border-radius:16px;
-    padding-top: 80px;
+    padding-top: 40px;
     padding-bottom: 0px;
   }
   #portfolioImg{
@@ -158,6 +154,7 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     transition: transform 0.25s ease;
     transform-origin: center center;
+    cursor: zoom-in;
   }
 </style>
 </head>
@@ -187,7 +184,6 @@
     </div>
   </div>
 
-  <!-- 플로팅 Zoom 버튼 -->
   <div class="floating-zoom">
     <button onclick="zoomOut()">−</button>
     <button onclick="resetZoom()">100%</button>
@@ -207,7 +203,15 @@
     currentIndex = (i + images.length) % images.length;
     imgEl.src = images[currentIndex];
     resetZoom();
+
+    // ★★★ 핵심: 이미지가 바뀔 때마다 강제로 맨 위로 이동 ★★★
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant"   // 부드럽지 않고 바로 이동
+    });
   }
+
   function nextImage(){ show(currentIndex + 1); }
   function prevImage(){ show(currentIndex - 1); }
 
