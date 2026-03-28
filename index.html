@@ -71,7 +71,13 @@
     background: var(--accent);
     transform: scale(1.08);
   }
-  .arrow-btn button img{
+  .arrow-btn button:first-child img{
+    width: 28px;          /* 당신이 그린 아이콘 크기 (조정 가능) */
+    height: 28px;
+    filter: brightness(1); /* hover 시 색상 변화 대비 */
+    transform: translateX(-2px);
+  }
+   .arrow-btn button:last-child img{
     width: 28px;          /* 당신이 그린 아이콘 크기 (조정 가능) */
     height: 28px;
     filter: brightness(1); /* hover 시 색상 변화 대비 */
