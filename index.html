@@ -3,63 +3,91 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Portfolio</title>
+<title>Portfolio — 이상혁</title>
 <style>
-  :root{--bg:#000;--fg:#fff;--muted:#bbb}
-  html {
-    overflow-y: scroll;       /* 항상 세로 스크롤바 공간 확보 */
-    scrollbar-gutter: stable; /* 최신 브라우저에서 스크롤바 폭 고정 */
+  :root{
+    --bg: #0a0a0a;
+    --charcoal: #1f1f1f;
+    --fg: #f5e8c7;
+    --accent: #d4af77; /* Rose Gold */
+    --muted: #a8a8a8;
   }
+  html { overflow-y: scroll; scrollbar-gutter: stable; }
   body{
     margin:0;
-    background:var(--bg);
+    background: linear-gradient(180deg, var(--bg) 0%, var(--charcoal) 100%);
     color:var(--fg);
-    font-family:system-ui,Arial,sans-serif
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
   }
-  .wrap{max-width:960px;margin:48px auto;padding:0 20px}
-
+  .wrap{
+    max-width:960px;
+    margin:48px auto;
+    padding:0 20px;
+  }
   .header-row{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    margin-bottom:12px;
+    margin-bottom:24px;
     position: sticky;
     top: 0;
-    background: #000;
-    padding: 10px 0;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(12px);
+    padding: 16px 0;
     z-index: 1000;
+    border-bottom: 1px solid rgba(212,175,119,0.15);
   }
   .title-block h1{
     margin:0;
-    font-size:28px;
+    font-size:32px;
+    font-weight:600;
+    letter-spacing: -0.02em;
+    color: var(--accent);
   }
   .title-block p{
-    margin:0;
+    margin:4px 0 0;
     color:var(--muted);
+    font-size:15px;
   }
   .arrow-btn{
     display:flex;
-    gap:20px;
+    gap:12px;
   }
   .arrow-btn button{
-    border:0;
-    background:rgba(255,255,255,0.1);
-    color:#fff;
-    font-size:20px;
-    padding:8px 20px;
-    border-radius:6px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    font-size:22px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor:pointer;
+    transition: all 0.3s ease;
   }
   .arrow-btn button:hover{
-    background:rgba(255,255,255,0.25);
+    background: var(--accent);
+    color: #0a0a0a;
+    transform: scale(1.05);
   }
-
-  /* 이미지 스타일 - 항상 컨테이너 폭 100% 맞춤 */
   img{
     max-width:100%;
     height:auto;
-    border-radius:12px;
+    border-radius:16px;
     display:block;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  }
+  /* Dark Opulence 느낌 강화 */
+  .wrap::before{
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at center, rgba(212,175,119,0.03) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
   }
 </style>
 </head>
@@ -68,28 +96,29 @@
     <div class="header-row">
       <div class="title-block">
         <h1>Portfolio</h1>
-        <p>2026.03.28 Upload</p>
+        <p>이상혁 · 시각디자이너 · 2026.03</p>
       </div>
       <div class="arrow-btn">
-        <button type="button" aria-label="이전" onclick="prevImage()">&#9664;</button>
-        <button type="button" aria-label="다음" onclick="nextImage()">&#9654;</button>
+        <button type="button" aria-label="이전" onclick="prevImage()">‹</button>
+        <button type="button" aria-label="다음" onclick="nextImage()">›</button>
       </div>
     </div>
 
-    <img id="portfolioImg"
-         src="https://raw.githubusercontent.com/dltkdgur060-oss/portfolio_images/main/4x_Watch.png"
+    <img id="portfolioImg" 
+         src="https://raw.githubusercontent.com/dltkdgur060-oss/portfolio_images/main/intelipick_portfolio_v1.png"
          alt="포트폴리오 대표 이미지">
   </div>
 
 <script>
   const images = [
+    "https://raw.githubusercontent.com/dltkdgur060-oss/portfolio_images/main/intelipick_portfolio_v1.png",
     "https://raw.githubusercontent.com/dltkdgur060-oss/portfolio_images/main/4x_Watch.png",
     "https://raw.githubusercontent.com/dltkdgur060-oss/portfolio_images/main/ADDABLE_able-Fit.png"
   ];
   let currentIndex = 0;
   const imgEl = document.getElementById("portfolioImg");
 
-  function show(i){
+  function show(i) {
     currentIndex = (i + images.length) % images.length;
     imgEl.src = images[currentIndex];
   }
