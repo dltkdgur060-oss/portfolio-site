@@ -21,26 +21,35 @@
   }
   .wrap{
     max-width:960px;
-    margin:0 auto;
+    margin: 0 auto;
     padding:0 20px;
-    padding-top: 90px;
+    padding-top: 40px;
   }
+
+  /* 상단바 전체 화면 full-width 검은색 */
   .header-row{
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(10,10,10,0.95);
+    background: #0a0a0a;
     backdrop-filter: blur(12px);
-    padding: 16px 20px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+    padding: 16px 0;
     border-bottom: 1px solid rgba(212,175,119,0.15);
-    max-width:960px;
-    margin:0 auto;
   }
+
+  /* 내부 콘텐츠 중앙 정렬 + 오른쪽 패딩 늘림 */
+  .header-content{
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px 0 24px;    /* 스크롤바 공간 확보 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: auto;
+  }
+
   .title-block h1{
     margin:0;
     font-size:32px;
@@ -108,8 +117,6 @@
   .floating-zoom:hover{
     opacity: 1;
   }
-
-  /* 모든 버튼 기본 스타일 */
   .floating-zoom button{
     border: 1px solid var(--accent);
     background: transparent;
@@ -124,14 +131,10 @@
     transition: all 0.3s ease;
     font-size: 18px;
   }
-
-  /* 100% 버튼만 border 완전 제거 */
   .floating-zoom button:nth-child(2){
-    border: none;           /* ← 여기서 border 제거 */
     width: 52px;
     font-size: 15px;
   }
-
   .floating-zoom button:hover{
     background: var(--accent);
     color: #0a0a0a;
@@ -145,7 +148,7 @@
     text-align:center;
     overflow: hidden;
     border-radius:16px;
-    padding-top: 20px;
+    padding-top: 80px;
     padding-bottom: 0px;
   }
   #portfolioImg{
@@ -160,17 +163,19 @@
 </head>
 <body>
   <div class="header-row">
-    <div class="title-block">
-      <h1>Portfolio</h1>
-      <p>2026.03</p>
-    </div>
-    <div class="arrow-btn">
-      <button onclick="prevImage()">
-        <img src="https://raw.githubusercontent.com/dltkdgur060-oss/portfolio_images/main/left.png" alt="이전">
-      </button>
-      <button onclick="nextImage()">
-        <img src="https://raw.githubusercontent.com/dltkdgur060-oss/portfolio_images/main/right.png" alt="다음">
-      </button>
+    <div class="header-content">
+      <div class="title-block">
+        <h1>Portfolio</h1>
+        <p>2026.03</p>
+      </div>
+      <div class="arrow-btn">
+        <button onclick="prevImage()">
+          <img src="https://raw.githubusercontent.com/dltkdgur060-oss/portfolio_images/main/left.png" alt="이전">
+        </button>
+        <button onclick="nextImage()">
+          <img src="https://raw.githubusercontent.com/dltkdgur060-oss/portfolio_images/main/right.png" alt="다음">
+        </button>
+      </div>
     </div>
   </div>
 
